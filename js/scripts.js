@@ -1,13 +1,27 @@
+// data
+const NOW_SHOWING = {
+  ivbs: {title: 'Invasion of the Body Snatchers', price: 15},
+  thng: {title: 'The Thing', price: 15},
+  prmk: {title: 'Princess Mononoke', price: 20},
+  gzvk: {title: 'Godzilla vs Kong', price: 25},
+}
+
 // business logic
 function Ticket() {
-  this.basePrice = 20
+  this.movieName = undefined
+  this.basePrice = undefined
   this.discounts = {
     senior: 0,
     matinee: 0,
-    dated: 0
   }
   this.isValid = false
   this.ageHasBeenVerified = false
+}
+
+Ticket.prototype.selectMovie = function(movieId) { // 'prmk'
+  const chosenMovie = NOW_SHOWING[movieId]
+  this.movieName = chosenMovie.title
+  this.basePrice = chosenMovie['price']
 }
 
 Ticket.prototype.finalPrice = function() {
@@ -48,3 +62,4 @@ Ticket.prototype.discountByTime = function(chosenTime) {
 const ticket = new Ticket()
 
 // ui logic
+
