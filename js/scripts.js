@@ -12,7 +12,10 @@ function Ticket() {
 
 Ticket.prototype.finalPrice = function() {
   let finalPrice = this.basePrice
-  
+  const discountValues = Object.values(this.discounts)  // [0, 0, 0]
+  discountValues.forEach(discountValue => {
+    finalPrice -= discountValue
+  })
   return finalPrice
 }
 
@@ -41,5 +44,7 @@ Ticket.prototype.discountByTime = function(chosenTime) {
   }
   return false
 }
+
+const ticket = new Ticket()
 
 // ui logic
