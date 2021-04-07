@@ -63,3 +63,17 @@ const ticket = new Ticket()
 
 // ui logic
 
+$(document).ready(function() {
+  const movieOptions = Object.entries(NOW_SHOWING)
+  console.log(movieOptions)
+  const $movieOptions = movieOptions.map(movieOption => {
+    const movieTitle = movieOption[1].title
+    const id = movieOption[0]
+    const $label = $(`<label for='${id}'/>`).text(movieTitle)
+    const $radio = $(`<input type="radio" name="movie" value="${id}" id="${id}">`)
+    $($label).prepend($radio)
+    return $label
+  })
+  $('#movie-options').append($movieOptions)
+
+})
